@@ -1,3 +1,7 @@
+## Installation
+
+    composer require brezgalov/php-typed-collection dev-master
+
 ## Description
 
 Abstraction designed to make typed collections based on **Iterator** interface
