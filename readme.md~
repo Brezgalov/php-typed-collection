@@ -7,10 +7,10 @@ You can implement ArrayAccess when it required
 
 ## Usage
 
-    class MyClassCollection extends AbstractTypedIterator
+    class MyClassCollection extends AbstractTypedCollection
     {
         /**
-         * override to set collection element type 
+         * describe response clearly 
          */
         public function current(): MyClass
         {

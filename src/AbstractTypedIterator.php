@@ -2,23 +2,9 @@
 
 namespace Brezgalov\PhpTypedCollection;
 
-abstract class AbstractTypedCollection implements \Iterator
+abstract class AbstractTypedIterator extends AbstractTypedContainer implements \Iterator
 {
-    protected array $container = [];
-    private int $offset;
-
-    public function __construct(array $items)
-    {
-        $this->rewind();
-
-        foreach ($items as $item) {
-            if ($this->validateItem($item)) {
-                $this->container[] = $item;
-            }
-        }
-    }
-
-    protected abstract function validateItem($item): bool;
+    protected int $offset = 0;
 
     protected function getOffset(): mixed
     {
