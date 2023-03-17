@@ -2,7 +2,9 @@
 
 namespace Brezgalov\PhpTypedCollection;
 
-abstract class AbstractTypedContainer
+use Countable;
+
+abstract class AbstractTypedContainer implements Countable
 {
     protected array $container = [];
 
@@ -23,6 +25,11 @@ abstract class AbstractTypedContainer
     }
 
     protected abstract function validateItem($item): bool;
+
+    public function count(): int
+    {
+        return count($this->container);
+    }
 
     public function toArray(): array
     {
