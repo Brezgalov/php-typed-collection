@@ -2,8 +2,10 @@
 
 namespace Brezgalov\PhpTypedCollection;
 
-class ContainerDeepCloneTrait
+trait ContainerDeepCloneTrait
 {
+    protected array $container = [];
+    
     public function __clone(): void
     {
         foreach ($this->container as $i => $item) {
