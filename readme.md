@@ -41,3 +41,29 @@ You can implement ArrayAccess when it required
     foreach($collection as $class) {
         // $class instance of MyClass - put your handle logic here 
     }
+
+## Deep cloning
+
+Objects stored inside collection are references. 
+
+If you want to clone collection safely - consider using 
+**ContainerDeepCloneTrait** as it shown below:
+
+    class MyClassCollection extends AbstractTypedIterator
+    {
+        use ContainerDeepCloneTrait;
+
+        public function current(): MyClass
+        {
+            return parent::current();
+        }
+
+        protected function validateItem($item): bool
+        {
+            return $item instanceof MyClass;
+        }
+    }
+
+    ...
+
+    $clone = clone $myClassCollection; // it's deep cloned now 
