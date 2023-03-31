@@ -8,10 +8,17 @@ trait ContainerDeepCloneTrait
     
     public function __clone(): void
     {
-        foreach ($this->container as $i => $item) {
-            if (is_object($item)) {
-                $this->container[$i] = clone $item;
-            }
+        $this->container = $this->cloneArrayItems($this->container);
+    }
+
+    protected function cloneArrayItems(array $array): array
+    {
+        $result = [];
+
+        foreach ($array as $i => $item) {
+            $result[] = is_object($item) ? clone $item : $item;
         }
+
+        return $result;
     }
 }

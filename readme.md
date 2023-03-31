@@ -47,7 +47,9 @@ You can implement ArrayAccess when it required
 Objects stored inside collection are references. 
 
 If you want to clone collection safely - consider using 
-**ContainerDeepCloneTrait** as it shown below:
+**ContainerDeepCloneTrait** or **AbstractTypedCloneSafeIterator** as it shown below:
+
+**ContainerDeepCloneTrait**:
 
     class MyClassCollection extends AbstractTypedIterator
     {
@@ -64,6 +66,19 @@ If you want to clone collection safely - consider using
         }
     }
 
-    ...
+    $clone = clone $myClassCollection; // it's deep cloned now
 
-    $clone = clone $myClassCollection; // it's deep cloned now 
+**AbstractTypedCloneSafeIterator**:
+
+    class MyClassCollection extends AbstractTypedCloneSafeIterator
+    {
+        ...
+    }
+
+    function testClone() {
+        $myClass = new MyClass();
+        $array = [$myClass];
+
+        return new MyClassCollection($array); // $myClass is cloned
+    }
+
